@@ -15,7 +15,7 @@
 ### along with this program; if not, write to the Free Software
 ### Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-from ..lib import enotify
+from ..bab import enotify
 
 E_NEW_PM = enotify.new_event_flag()
 
