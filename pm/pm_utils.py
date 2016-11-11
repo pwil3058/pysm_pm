@@ -16,11 +16,15 @@
 
 """Utility functions for Patch Managers"""
 
-__all__ = ["patch_timestamp_str", "MERGE_CRE", "generic_delete_files", "get_patch_file_description", "set_patch_file_description"]
+__all__ = ["patch_timestamp_str", "MERGE_CRE", "generic_delete_files",
+           "get_patch_file_description", "set_patch_file_description",
+           "convert_patchname_to_filename"]
 __author__ = "Peter Williams <pwil3058@gmail.com>"
 
 import re
 import time
+
+from ..bab import options
 
 def patch_timestamp_tz_str(tz_seconds=None):
     '''Return the timezone as a string suitable for use in patch header'''
@@ -71,3 +75,13 @@ def get_patch_file_description(patch_file_path):
     from ..bab import utils
     pobj = patchlib.Patch.parse_text(utils.get_file_contents(patch_file_path))
     return pobj.get_description()
+
+options.define("export", "replace_spc_in_name_with", options.Defn(str, None, _("Character to replace spaces in patch names with during export")))
+
+def convert_patchname_to_filename(patchname):
+    import re
+    repl = options.get("export", "replace_spc_in_name_with")
+    if isinstance(repl, str):
+        return re.sub("(\s+)", repl, patchname.strip())
+    else:
+        return patchname
