@@ -157,7 +157,7 @@ def chdir(newdir):
         from ..gtx import recollect
         PgndPathView.append_saved_path(newdir)
         recollect.set("playground", "last_used", newdir)
-    from ..scm_gui import scm_gui_ifce
+    from ..scm.gui import scm_gui_ifce
     scm_gui_ifce.reset_scm_ifce()
     options.reload_pgnd_options()
     CURDIR = os.getcwd()

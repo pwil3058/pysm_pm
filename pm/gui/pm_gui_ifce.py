@@ -208,7 +208,7 @@ def init():
         from ..gtx import recollect
         pm_wspce.add_playground_path(root)
         recollect.set("playground", "last_used", root)
-    from ..scm_gui import scm_gui_ifce
+    from ..scm.gui import scm_gui_ifce
     scm_gui_ifce.reset_scm_ifce()
     curr_dir = os.getcwd()
     options.reload_pgnd_options()
@@ -239,7 +239,7 @@ def init_current_dir(backend):
     if curr_pm != PM:
         from ..pm import E_NEW_PM
         events |= E_NEW_PM
-    from ..scm_gui import scm_gui_ifce
+    from ..scm.gui import scm_gui_ifce
     curr_scm = scm_gui_ifce.SCM
     scm_gui_ifce.reset_scm_ifce()
     if curr_scm != scm_gui_ifce.SCM:
@@ -275,7 +275,7 @@ def check_interfaces(args):
             pm_wspce.add_playground_path(newdir)
             recollect.set("playground", "last_used", newdir)
             options.load_pgnd_options()
-    from ..scm_gui import scm_gui_ifce
+    from ..scm.gui import scm_gui_ifce
     curr_scm = scm_gui_ifce.SCM
     scm_gui_ifce.reset_scm_ifce()
     if curr_scm != scm_gui_ifce.SCM and not enotify.E_CHANGE_WD & events:
@@ -288,7 +288,7 @@ def get_author_name_and_email():
     import email.utils
     from ..bab import utils
     from ..bab import options
-    from ..scm_gui import scm_gui_ifce
+    from ..scm.gui import scm_gui_ifce
     DEFAULT_NAME_EVARS = ["GECOS", "GIT_AUTHOR_NAME", "LOGNAME"]
     DEFAULT_EMAIL_EVARS = ["EMAIL_ADDRESS", "GIT_AUTHOR_EMAIL"]
     # first check for OUR definitions in the current pgnd

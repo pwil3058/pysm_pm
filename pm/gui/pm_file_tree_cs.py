@@ -31,7 +31,7 @@ from ..pm.gui import pm_actions
 from ..pm.gui import pm_diff
 from ..pm.gui import pm_do_opn_files
 
-from ..scm_gui import scm_actions
+from ..scm.gui import scm_actions
 
 from .. import wsm_icons
 

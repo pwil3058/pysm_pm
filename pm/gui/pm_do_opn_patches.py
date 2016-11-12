@@ -39,7 +39,7 @@ from .. import pm
 
 from . import pm_gui_ifce
 from . import pm_actions
-from ..scm_gui import scm_actions
+from ..scm.gui import scm_actions
 
 from .. import wsm_icons
 
