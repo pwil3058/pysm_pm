@@ -25,7 +25,7 @@ from ..bab import utils
 from ..gtx import dialogue
 from ..gtx import gutils
 
-from ..patch_diff_gui import patch_view
+from ..patch_diff.gui import patch_view
 
 from .. import pm
 from ..pm.gui import pm_gui_ifce

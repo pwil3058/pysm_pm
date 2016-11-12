@@ -91,7 +91,7 @@ class PMDoOpnFilesMixin:
         xtnl_edit.edit_files_extern(file_paths)
 
     def pm_do_extdiff_for_file(self, file_path, patch_name=None):
-        from ..patch_diff_gui import diff
+        from ..patch_diff.gui import diff
         files = pm_gui_ifce.PM.get_extdiff_files_for(file_path=file_path, patch_name=patch_name)
         self.report_any_problems(diff.launch_external_diff(files.original_version, files.patched_version))
 
