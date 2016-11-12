@@ -28,7 +28,7 @@ from ..gtx import gutils
 from ..patch_diff_gui import patch_view
 
 from .. import pm
-from ..pm_gui import pm_gui_ifce
+from ..pm.gui import pm_gui_ifce
 
 from .. import wsm_icons
 

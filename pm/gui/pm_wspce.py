@@ -49,7 +49,7 @@ class AskInitPgndDialog(dialogue.QuestionDialog, dialogue.ClientMixin):
         self.connect("response", self._response_cb)
     def _response_cb(self, dialog, response_id):
         if response_id == Gtk.ResponseType.YES:
-            from ..pm_gui import pm_gui_ifce
+            from ..pm.gui import pm_gui_ifce
             req_back_end = pm_gui_ifce.choose_backend(dialog)
             if req_back_end:
                 result = pm_gui_ifce.init_current_dir(req_back_end)
@@ -73,7 +73,7 @@ class PgndOpenDialog(PgndPathDialog):
                 open_dialog.inform_user(_("\"Playground/Directory\" field must contain a directory path"))
                 return
             open_dialog.destroy()
-            from ..pm_gui import pm_gui_ifce
+            from ..pm.gui import pm_gui_ifce
             if not pm_gui_ifce.PM.in_valid_pgnd:
                 AskInitPgndDialog().run()
         else:
@@ -148,7 +148,7 @@ def chdir(newdir):
     from ..bab import enotify
     from ..bab import options
     from ..gtx.console import LOG
-    from ..pm_gui import pm_gui_ifce
+    from ..pm.gui import pm_gui_ifce
     pm_gui_ifce.reset_pm_ifce()
     if pm_gui_ifce.PM.in_valid_pgnd:
         # move down to the root dir

@@ -31,9 +31,9 @@ from ..gtx import xtnl_edit
 
 from .. import pm
 from .. import scm
-from ..pm_gui import pm_gui_ifce
-from ..pm_gui import pm_actions
-from ..pm_gui import pm_do_opn_files
+from ..pm.gui import pm_gui_ifce
+from ..pm.gui import pm_actions
+from ..pm.gui import pm_do_opn_files
 
 from ..scm_gui import scm_gui_ifce
 from ..scm_gui import scm_actions

@@ -136,7 +136,7 @@ class _NULL_BACKEND:
         return []
     @staticmethod
     def get_patch_list_data():
-        from ..pm_gui import NullPatchListData
+        from ..pm.gui import NullPatchListData
         return NullPatchListData()
     @staticmethod
     def get_patch_text(patch_name):
@@ -204,7 +204,7 @@ def init():
     if PM.in_valid_pgnd:
         root = PM.get_playground_root()
         os.chdir(root)
-        from ..pm_gui import pm_wspce
+        from ..pm.gui import pm_wspce
         from ..gtx import recollect
         pm_wspce.add_playground_path(root)
         recollect.set("playground", "last_used", root)
@@ -246,7 +246,7 @@ def init_current_dir(backend):
         from ..scm import E_NEW_SCM
         events |= E_NEW_SCM
     if PM.in_valid_pgnd:
-        from ..pm_gui import pm_wspce
+        from ..pm.gui import pm_wspce
         from ..gtx import recollect
         curr_dir = os.getcwd()
         pm_wspce.add_playground_path(curr_dir)
@@ -267,7 +267,7 @@ def check_interfaces(args):
             import os
             from ..bab import options
             from ..gtx import recollect
-            from ..pm_gui import pm_wspce
+            from ..pm.gui import pm_wspce
             newdir = PM.get_playground_root()
             if not os.path.samefile(newdir, os.getcwd()):
                 os.chdir(newdir)

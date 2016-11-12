@@ -26,10 +26,10 @@ from ..gtx import file_tree
 from ..bab import enotify
 
 from .. import pm
-from ..pm_gui import pm_gui_ifce
-from ..pm_gui import pm_actions
-from ..pm_gui import pm_diff
-from ..pm_gui import pm_do_opn_files
+from ..pm.gui import pm_gui_ifce
+from ..pm.gui import pm_actions
+from ..pm.gui import pm_diff
+from ..pm.gui import pm_do_opn_files
 
 from ..scm_gui import scm_actions
 

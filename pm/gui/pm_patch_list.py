@@ -35,10 +35,10 @@ from .. import wsm_icons
 
 from ..pm import PatchState
 
-from ..pm_gui import pm_actions
-from ..pm_gui import pm_do_opn_patches
-from ..pm_gui import pm_gui_ifce
-from ..pm_gui import pm_patch_view
+from ..pm.gui import pm_actions
+from ..pm.gui import pm_do_opn_patches
+from ..pm.gui import pm_gui_ifce
+from ..pm.gui import pm_patch_view
 
 def patch_markup(patch_data, selected_guards):
     markup = patch_data.name

@@ -18,7 +18,7 @@ Workspace status action groups
 '''
 
 from .. import pm
-from ..pm_gui import pm_gui_ifce
+from ..pm.gui import pm_gui_ifce
 from .. import scm
 
 from ..bab import enotify
