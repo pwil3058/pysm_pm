@@ -1,3 +1,3 @@
 # pysm_wsm
-Git submodule supporting development of workspace management tools
-
+Git submodule provideing generic patch management mechanisms
+supporting development of workspace management tools
