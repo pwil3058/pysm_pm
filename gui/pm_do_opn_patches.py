@@ -43,7 +43,10 @@ from ...scm.gui import scm_actions
 
 from ... import wsm_icons
 
-from .... import APP_NAME
+try:
+    from ... import APP_NAME
+except ImportError:
+    from .... import APP_NAME
 
 recollect.define("export", "last_directory", recollect.Defn(str, ""))
 recollect.define("import", "last_directory", recollect.Defn(str, ""))

@@ -74,7 +74,10 @@ class Widget(patch_view.PatchWidget):
 class Dialogue(dialogue.ListenerDialog):
     AUTO_UPDATE_TD = gutils.TimeOutController.ToggleData("auto_update_toggle", _("Auto _Update"), _("Turn data auto update on/off"), Gtk.STOCK_REFRESH)
     def __init__(self, patch_name):
-        from .... import APP_NAME
+        try:
+            from ... import APP_NAME
+        except ImportError:
+            from .... import APP_NAME
         title = _(APP_NAME + ": Patch \"{0}\" : {1}").format(patch_name, utils.path_rel_home(os.getcwd()))
         dialogue.ListenerDialog.__init__(self, title=title, parent=dialogue.main_window, flags=Gtk.DialogFlags.DESTROY_WITH_PARENT)
         self._widget = Widget(patch_name)

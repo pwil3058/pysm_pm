@@ -25,7 +25,10 @@ from ...gtx import dialogue
 
 from ... import wsm_icons
 
-from .... import CONFIG_DIR_PATH
+try:
+    from ... import CONFIG_DIR_PATH
+except ImportError:
+    from .... import CONFIG_DIR_PATH
 
 SAVED_PGND_FILE_NAME = os.sep.join([CONFIG_DIR_PATH, "playgrounds"])
 
