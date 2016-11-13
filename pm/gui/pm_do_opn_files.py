@@ -19,11 +19,11 @@
 __all__ = []
 __author__ = "Peter Williams <pwil3058@gmail.com>"
 
-from ..gtx import xtnl_edit
+from ...gtx import xtnl_edit
 
 from . import pm_gui_ifce
 
-from ..bab import options
+from ...bab import options
 options.define("reconcile", "tool", options.Defn(str, "meld", _("The name of external application for reconciling conflicts")))
 
 class PMDoOpnFilesMixin:
@@ -33,7 +33,7 @@ class PMDoOpnFilesMixin:
         return self.do_op_force_refresh_or_absorb(do_op, refresh_op)
 
     def pm_do_add_new_file(self, open_for_edit=False):
-        from ..bab import os_utils
+        from ...bab import os_utils
         new_file_path = self.ask_file_path(_("Enter path for new file"), existing=False)
         if not new_file_path:
             return
@@ -91,7 +91,7 @@ class PMDoOpnFilesMixin:
         xtnl_edit.edit_files_extern(file_paths)
 
     def pm_do_extdiff_for_file(self, file_path, patch_name=None):
-        from ..patch_diff.gui import diff
+        from ...patch_diff.gui import diff
         files = pm_gui_ifce.PM.get_extdiff_files_for(file_path=file_path, patch_name=patch_name)
         self.report_any_problems(diff.launch_external_diff(files.original_version, files.patched_version))
 
@@ -105,8 +105,8 @@ class PMDoOpnFilesMixin:
 
     @staticmethod
     def _launch_reconciliation_tool(file_a, file_b, file_c):
-        from ..bab import runext
-        from ..bab import CmdResult
+        from ...bab import runext
+        from ...bab import CmdResult
         reconciler = options.get("reconcile", "tool")
         if not reconciler:
             return CmdResult.warning(_("No reconciliation tool is defined.\n"))

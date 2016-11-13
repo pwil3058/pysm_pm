@@ -18,27 +18,27 @@ import os
 from gi.repository import Gtk
 from gi.repository import GObject
 
-from ..bab import CmdFailure
-from ..bab import enotify
-from ..bab import os_utils
+from ...bab import CmdFailure
+from ...bab import enotify
+from ...bab import os_utils
 
-from ..gtx import actions
-from ..gtx import dialogue
-from ..gtx import doop
-from ..gtx import file_tree
-from ..gtx import gutils
-from ..gtx import xtnl_edit
+from ...gtx import actions
+from ...gtx import dialogue
+from ...gtx import doop
+from ...gtx import file_tree
+from ...gtx import gutils
+from ...gtx import xtnl_edit
 
-from .. import pm
-from .. import scm
-from ..pm.gui import pm_gui_ifce
-from ..pm.gui import pm_actions
-from ..pm.gui import pm_do_opn_files
+from ... import pm
+from ... import scm
+from . import pm_gui_ifce
+from . import pm_actions
+from . import pm_do_opn_files
 
-from ..scm.gui import scm_gui_ifce
-from ..scm.gui import scm_actions
+from ...scm.gui import scm_gui_ifce
+from ...scm.gui import scm_actions
 
-from .. import wsm_icons
+from ... import wsm_icons
 
 #          <menuitem action='peruse_files'/>
 #          <menuitem action='pm_copy_files_to_top_patch'/>

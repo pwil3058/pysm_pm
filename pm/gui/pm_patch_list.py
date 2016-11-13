@@ -19,26 +19,26 @@ import os
 from gi.repository import Gtk
 from gi.repository import GObject
 
-from ..bab import enotify
-from ..bab import utils
+from ...bab import enotify
+from ...bab import utils
 
-from ..gtx import dialogue
-from ..gtx import doop
-from ..gtx import gutils
-from ..gtx import tlview
-from ..gtx import actions
-from ..gtx import table
-from ..gtx import auto_update
+from ...gtx import dialogue
+from ...gtx import doop
+from ...gtx import gutils
+from ...gtx import tlview
+from ...gtx import actions
+from ...gtx import table
+from ...gtx import auto_update
 
-from .. import pm
-from .. import wsm_icons
+from ... import pm
+from ... import wsm_icons
 
-from ..pm import PatchState
+from .. import PatchState
 
-from ..pm.gui import pm_actions
-from ..pm.gui import pm_do_opn_patches
-from ..pm.gui import pm_gui_ifce
-from ..pm.gui import pm_patch_view
+from . import pm_actions
+from . import pm_do_opn_patches
+from . import pm_gui_ifce
+from . import pm_patch_view
 
 def patch_markup(patch_data, selected_guards):
     markup = patch_data.name

@@ -25,25 +25,25 @@ import os
 from gi.repository import GObject
 from gi.repository import Gtk
 
-from ..bab import utils
+from ...bab import utils
 
-from ..gtx import actions
-from ..gtx import dialogue
-from ..gtx import icons
-from ..gtx import recollect
-from ..gtx import table
-from ..gtx import text_edit
-from ..gtx import tlview
+from ...gtx import actions
+from ...gtx import dialogue
+from ...gtx import icons
+from ...gtx import recollect
+from ...gtx import table
+from ...gtx import text_edit
+from ...gtx import tlview
 
-from .. import pm
+from ... import pm
 
 from . import pm_gui_ifce
 from . import pm_actions
-from ..scm.gui import scm_actions
+from ...scm.gui import scm_actions
 
-from .. import wsm_icons
+from ... import wsm_icons
 
-from ... import APP_NAME
+from .... import APP_NAME
 
 recollect.define("export", "last_directory", recollect.Defn(str, ""))
 recollect.define("import", "last_directory", recollect.Defn(str, ""))
@@ -292,7 +292,7 @@ def pm_do_scm_absorb_applied_patches(helper):
     return result.is_ok
 
 def pm_do_fold_external_patch(helper):
-    from ..patch_diff import patchlib
+    from ...patch_diff import patchlib
     patch_file_path = helper.ask_file_path(_("Select patch file to be folded"))
     if patch_file_path is None:
         return
@@ -335,7 +335,7 @@ def pm_do_fold_external_patch(helper):
 
 def pm_do_import_external_patch(helper):
     suggestion = recollect.get("import", "last_directory")
-    from ..patch_diff import patchlib
+    from ...patch_diff import patchlib
     patch_file_path = helper.ask_file_path(_("Select patch file to be imported"), suggestion=suggestion)
     if patch_file_path is None:
         return
@@ -767,7 +767,7 @@ class ImportPatchDialog(dialogue.Dialog):
     def get_as_name(self):
         return self.as_name.get_text()
     def update_file_list(self):
-        from ..wsm.patch_diff.patchlib import TooMayStripLevels
+        from ...patch_diff.patchlib import TooMayStripLevels
         strip_level = self.get_strip_level()
         try:
             filepaths = self.epatch.get_file_paths(strip_level)

@@ -38,7 +38,7 @@ def backend_requirements():
     return msg
 
 def report_backend_requirements(parent=None):
-    from ..gtx import dialogue
+    from ...gtx import dialogue
     dialogue.main_window.inform_user(backend_requirements(), parent=parent)
 
 def avail_backends():
@@ -101,7 +101,7 @@ class _NULL_BACKEND:
         return ""
     @staticmethod
     def get_combined_patch_file_db():
-        from ..gtx import fsdb
+        from ...gtx import fsdb
         return fsdb.NullFileDb()
     @staticmethod
     def get_default_new_patch_save_file():
@@ -123,7 +123,7 @@ class _NULL_BACKEND:
         return ""
     @staticmethod
     def get_patch_file_db(patch_name):
-        from ..gtx import fsdb
+        from ...gtx import fsdb
         return fsdb.NullFileDb()
     @staticmethod
     def get_patch_file_path(patch_name):
@@ -136,7 +136,7 @@ class _NULL_BACKEND:
         return []
     @staticmethod
     def get_patch_list_data():
-        from ..pm.gui import NullPatchListData
+        from . import NullPatchListData
         return NullPatchListData()
     @staticmethod
     def get_patch_text(patch_name):
@@ -155,7 +155,7 @@ class _NULL_BACKEND:
         return ""
     @staticmethod
     def get_top_patch_file_db():
-        from ..gtx import fsdb
+        from ...gtx import fsdb
         return fsdb.NullFileDb()
     @staticmethod
     def get_ws_update_clean_up_ready(applied_count=None):
@@ -196,23 +196,23 @@ def reset_pm_ifce(dir_path=None):
 
 def init():
     import os
-    from ..bab import options
-    from ..bab import enotify
+    from ...bab import options
+    from ...bab import enotify
     orig_dir = os.getcwd()
     options.load_global_options()
     reset_pm_ifce()
     if PM.in_valid_pgnd:
         root = PM.get_playground_root()
         os.chdir(root)
-        from ..pm.gui import pm_wspce
-        from ..gtx import recollect
+        from . import pm_wspce
+        from ...gtx import recollect
         pm_wspce.add_playground_path(root)
         recollect.set("playground", "last_used", root)
-    from ..scm.gui import scm_gui_ifce
+    from ...scm.gui import scm_gui_ifce
     scm_gui_ifce.reset_scm_ifce()
     curr_dir = os.getcwd()
     options.reload_pgnd_options()
-    from ..gtx.console import LOG
+    from ...gtx.console import LOG
     LOG.start_cmd("Working Directory: {0}\n".format(curr_dir))
     if PM.in_valid_pgnd:
         LOG.append_stdout("In valid repository\n")
@@ -223,31 +223,31 @@ def init():
     if not os.path.samefile(orig_dir, curr_dir):
         enotify.notify_events(enotify.E_CHANGE_WD, new_wd=curr_dir)
     else:
-        from ..pm import E_NEW_PM
-        from ..scm import E_NEW_SCM
+        from ...pm import E_NEW_PM
+        from ...scm import E_NEW_SCM
         enotify.notify_events(E_NEW_PM|E_NEW_SCM)
-    from ..gtx import auto_update
+    from ...gtx import auto_update
     auto_update.set_initialize_event_flags(check_interfaces)
 
 def init_current_dir(backend):
     import os
-    from ..bab import enotify
+    from ...bab import enotify
     result = create_new_playground(os.getcwd(), backend)
     events = 0
     curr_pm = PM
     reset_pm_ifce()
     if curr_pm != PM:
-        from ..pm import E_NEW_PM
+        from ...pm import E_NEW_PM
         events |= E_NEW_PM
-    from ..scm.gui import scm_gui_ifce
+    from ...scm.gui import scm_gui_ifce
     curr_scm = scm_gui_ifce.SCM
     scm_gui_ifce.reset_scm_ifce()
     if curr_scm != scm_gui_ifce.SCM:
-        from ..scm import E_NEW_SCM
+        from ...scm import E_NEW_SCM
         events |= E_NEW_SCM
     if PM.in_valid_pgnd:
-        from ..pm.gui import pm_wspce
-        from ..gtx import recollect
+        from . import pm_wspce
+        from ...gtx import recollect
         curr_dir = os.getcwd()
         pm_wspce.add_playground_path(curr_dir)
         recollect.set("playground", "last_used", curr_dir)
@@ -256,18 +256,18 @@ def init_current_dir(backend):
     return result
 
 def check_interfaces(args):
-    from ..bab import enotify
+    from ...bab import enotify
     events = 0
     curr_pm = PM
     reset_pm_ifce()
     if curr_pm != PM:
-        from ..pm import E_NEW_PM
+        from .. import E_NEW_PM
         events |= E_NEW_PM
         if PM.in_valid_pgnd:
             import os
-            from ..bab import options
-            from ..gtx import recollect
-            from ..pm.gui import pm_wspce
+            from ...bab import options
+            from ...gtx import recollect
+            from . import pm_wspce
             newdir = PM.get_playground_root()
             if not os.path.samefile(newdir, os.getcwd()):
                 os.chdir(newdir)
@@ -275,20 +275,20 @@ def check_interfaces(args):
             pm_wspce.add_playground_path(newdir)
             recollect.set("playground", "last_used", newdir)
             options.load_pgnd_options()
-    from ..scm.gui import scm_gui_ifce
+    from ...scm.gui import scm_gui_ifce
     curr_scm = scm_gui_ifce.SCM
     scm_gui_ifce.reset_scm_ifce()
     if curr_scm != scm_gui_ifce.SCM and not enotify.E_CHANGE_WD & events:
-        from ..scm import E_NEW_SCM
+        from ...scm import E_NEW_SCM
         events |= E_NEW_SCM
     return events
 
 def get_author_name_and_email():
     # TODO: generalise get_author_name_and_email() and use for both SCM and PM
     import email.utils
-    from ..bab import utils
-    from ..bab import options
-    from ..scm.gui import scm_gui_ifce
+    from ...bab import utils
+    from ...bab import options
+    from ...scm.gui import scm_gui_ifce
     DEFAULT_NAME_EVARS = ["GECOS", "GIT_AUTHOR_NAME", "LOGNAME"]
     DEFAULT_EMAIL_EVARS = ["EMAIL_ADDRESS", "GIT_AUTHOR_EMAIL"]
     # first check for OUR definitions in the current pgnd

@@ -21,24 +21,24 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
 
-from ..bab import CmdResult, CmdFailure
-from ..bab import runext
-from ..bab import enotify
-from ..bab import options
-from ..bab import utils
+from ...bab import CmdResult, CmdFailure
+from ...bab import runext
+from ...bab import enotify
+from ...bab import options
+from ...bab import utils
 
 
-from ..patch_diff import patchlib
+from ...patch_diff import patchlib
 
-from ..patch_diff.gui import diff
+from ...patch_diff.gui import diff
 
-from ..gtx import dialogue
-from ..gtx import gutils
+from ...gtx import dialogue
+from ...gtx import gutils
 
-from .. import pm
-from ..pm.gui import pm_gui_ifce
+from ... import pm
+from . import pm_gui_ifce
 
-from .. import wsm_icons
+from ... import wsm_icons
 
 class TopPatchDiffPlusesWidget(diff.DiffPlusesWidget, enotify.Listener):
     def __init__(self, file_paths=None, num_strip_levels=1):
@@ -143,8 +143,8 @@ class NamedPatchDiffTextDialog(_DiffDialog):
     DIFFS_WIDGET = NamedPatchDiffTextWidget
 
 #GLOBAL ACTIONS
-from ..gtx import actions
-from ..pm.gui import pm_actions
+from ...gtx import actions
+from . import pm_actions
 
 actions.CLASS_INDEP_AGS[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC].add_actions(
     [

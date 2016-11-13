@@ -21,13 +21,13 @@ __author__ = "Peter Williams <pwil3058@gmail.com>"
 
 import os
 
-from .. import pm
+from ... import pm
 
-from ..bab import CmdResult
-from ..bab import options
-from ..bab import utils
+from ...bab import CmdResult
+from ...bab import options
+from ...bab import utils
 
-from ..gtx import table
+from ...gtx import table
 
 class PatchListData(table.TableData):
     @property
@@ -62,7 +62,7 @@ class InterfaceMixin:
         return utils.set_file_contents(export_file_path, cls.get_patch_text(patch_name))
     @classmethod
     def do_set_patch_description(cls, patch_name, description, overwrite=False):
-        from ..gtx import console
+        from ...gtx import console
         result = pm.set_patch_file_description(cls.get_patch_file_path(patch_name), description, overwrite=overwrite)
         if result.is_ok:
             console.LOG.append_entry(_("set description for \"{0}\" patch.\n{1}\n").format(patch_name, description))

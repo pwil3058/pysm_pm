@@ -20,20 +20,20 @@ import hashlib
 
 from gi.repository import Gtk
 
-from ..bab import utils
+from ...bab import utils
 
-from ..gtx import dialogue
-from ..gtx import gutils
+from ...gtx import dialogue
+from ...gtx import gutils
 
-from ..patch_diff.gui import patch_view
+from ...patch_diff.gui import patch_view
 
-from .. import pm
-from ..pm.gui import pm_gui_ifce
+from ... import pm
+from . import pm_gui_ifce
 
-from .. import wsm_icons
+from ... import wsm_icons
 
 class Widget(patch_view.PatchWidget):
-    from ..pm import PatchState
+    from .. import PatchState
     status_icons = {
         PatchState.NOT_APPLIED : Gtk.STOCK_REMOVE,
         PatchState.APPLIED_REFRESHED : wsm_icons.STOCK_APPLIED,
@@ -74,7 +74,7 @@ class Widget(patch_view.PatchWidget):
 class Dialogue(dialogue.ListenerDialog):
     AUTO_UPDATE_TD = gutils.TimeOutController.ToggleData("auto_update_toggle", _("Auto _Update"), _("Turn data auto update on/off"), Gtk.STOCK_REFRESH)
     def __init__(self, patch_name):
-        from ... import APP_NAME
+        from .... import APP_NAME
         title = _(APP_NAME + ": Patch \"{0}\" : {1}").format(patch_name, utils.path_rel_home(os.getcwd()))
         dialogue.ListenerDialog.__init__(self, title=title, parent=dialogue.main_window, flags=Gtk.DialogFlags.DESTROY_WITH_PARENT)
         self._widget = Widget(patch_name)
@@ -107,7 +107,7 @@ class Dialogue(dialogue.ListenerDialog):
             result = pm_gui_ifce.PM.do_refresh_patch(self._widget.patch_name)
         dialogue.main_window.report_any_problems(result)
     def _save_as_acb(self, _action):
-        from ..gtx import recollect
+        from ...gtx import recollect
         suggestion = os.path.basename(pm.convert_patchname_to_filename(self._widget.patch_name))
         export_filepath = os.path.join(recollect.get("export", "last_directory"), suggestion)
         while True:
@@ -115,7 +115,7 @@ class Dialogue(dialogue.ListenerDialog):
             if export_filepath is None:
                 return
             if os.path.exists(export_filepath):
-                from .. import CmdResult
+                from ... import CmdResult
                 problem = CmdResult.error(stderr=_("A file of that name already exists!!")) | CmdResult.Suggest.OVERWRITE_OR_RENAME
                 response = dialogue.main_window.ask_rename_overwrite_or_cancel(problem)
                 if response == Gtk.ResponseType.CANCEL:
