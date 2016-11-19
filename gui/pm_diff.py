@@ -156,8 +156,8 @@ actions.CLASS_INDEP_AGS[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC].add_actio
          _("Display the diff for all files in the top patch"),
          lambda _action=None: TopPatchDiffPlusesDialog(parent=dialogue.main_window).show()
         ),
-        ("pm_top_patch_extdiff", wsm_icons.STOCK_DIFF, _('E_xtdiff'), None,
-         _('Launch extdiff for all files in patch'),
+        ("pm_top_patch_extdiff", wsm_icons.STOCK_DIFF, _("E_xtdiff"), None,
+         _("Launch extdiff for all files in patch"),
          lambda _action=None: pm_gui_ifce.PM.launch_extdiff_for_top_patch()
         ),
         ("pm_combined_patch_diff_text", wsm_icons.STOCK_DIFF, _("Combined Diff"), "",

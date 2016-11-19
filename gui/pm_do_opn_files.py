@@ -64,7 +64,7 @@ class PMDoOpnFilesMixin:
     def pm_do_delete_files(self, file_paths):
         if len(file_paths) == 0:
             return
-        emsg = '\n'.join(file_paths + ["", _('Confirm delete selected file(s) in top patch?')])
+        emsg = "\n".join(file_paths + ["", _("Confirm delete selected file(s) in top patch?")])
         if not self.ask_ok_cancel(emsg):
             return
         with self.showing_busy():
@@ -75,7 +75,7 @@ class PMDoOpnFilesMixin:
     def pm_do_drop_files(self, file_paths):
         if len(file_paths) == 0:
             return
-        emsg = '\n'.join(file_paths + ["", _('Confirm drop selected file(s) from patch?')])
+        emsg = "\n".join(file_paths + ["", _("Confirm drop selected file(s) from patch?")])
         if not self.ask_ok_cancel(emsg):
             return
         with self.showing_busy():

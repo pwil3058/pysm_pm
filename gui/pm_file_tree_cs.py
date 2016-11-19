@@ -60,7 +60,7 @@ class PatchFileTreeView(file_tree.FileTreeView):
     MODEL = PatchFileTreeModel
     AUTO_EXPAND = True
     UI_DESCR = \
-    '''
+    """
     <ui>
       <menubar name="files_menubar">
       </menubar>
@@ -73,7 +73,7 @@ class PatchFileTreeView(file_tree.FileTreeView):
         <separator/>
       </popup>
     </ui>
-    '''
+    """
     DIRS_SELECTABLE = False
     def __init__(self, patch_name=None):
         self._patch_name = patch_name
@@ -88,21 +88,21 @@ class PatchFileTreeView(file_tree.FileTreeView):
     def populate_action_groups(self):
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_MADE].add_actions(
             [
-                ('pm_patch_diff_selected_files', wsm_icons.STOCK_DIFF, _('_Diff'), None,
-                 _('Display the diff for selected files'),
+                ("pm_patch_diff_selected_files", wsm_icons.STOCK_DIFF, _("_Diff"), None,
+                 _("Display the diff for selected files"),
                  lambda _action=None: pm_diff.NamedPatchDiffPlusesDialog(patch_name=self._patch_name, file_paths=self.get_selected_fsi_paths()).show()
                 ),
             ])
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_UNIQUE].add_actions(
             [
-                ('pm_patch_extdiff_selected_file', wsm_icons.STOCK_DIFF, _('E_xtDiff'), None,
-                 _('Launch external diff viewer for selected file'),
+                ("pm_patch_extdiff_selected_file", wsm_icons.STOCK_DIFF, _("E_xtDiff"), None,
+                 _("Launch external diff viewer for selected file"),
                  lambda _action=None: self.pm_do_extdiff_for_file(self.get_selected_fsi_path(), patch_name=self._patch_name)
                 ),
             ])
         self.action_groups[pm_actions.AC_IN_PM_PGND].add_actions(
             [
-                ("menu_files", None, _('_Files')),
+                ("menu_files", None, _("_Files")),
             ])
 
 class PatchFilesDialog(dialogue.ListenerDialog, enotify.Listener):
@@ -111,7 +111,7 @@ class PatchFilesDialog(dialogue.ListenerDialog, enotify.Listener):
                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                        (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE))
         enotify.Listener.__init__(self)
-        self.set_title(_('patch: %s files: %s') % (patch_name, utils.cwd_rel_home()))
+        self.set_title(_("patch: %s files: %s") % (patch_name, utils.cwd_rel_home()))
         self.add_notification_cb(enotify.E_CHANGE_WD, self._chwd_cb)
         # file tree view wrapped in scrolled window
         self.file_tree = PatchFileTreeView(patch_name=patch_name)
@@ -150,7 +150,7 @@ class TopPatchFileTreeView(_GenericPatchFileTreeView):
     MODEL = TopPatchFileTreeModel
     AUTO_EXPAND = True
     UI_DESCR = \
-    '''
+    """
     <ui>
       <popup name="files_popup">
         <separator/>
@@ -168,46 +168,46 @@ class TopPatchFileTreeView(_GenericPatchFileTreeView):
         <separator/>
       </popup>
     </ui>
-    '''
+    """
     DIRS_SELECTABLE = False
     def __init__(self, **kwargs):
         _GenericPatchFileTreeView.__init__(self, **kwargs)
     def populate_action_groups(self):
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_MADE].add_actions(
             [
-                ('pm_edit_files', Gtk.STOCK_EDIT, _('_Edit'), None,
-                 _('Edit the selected file(s)'),
+                ("pm_edit_files", Gtk.STOCK_EDIT, _("_Edit"), None,
+                 _("Edit the selected file(s)"),
                  lambda _action=None: self.pm_do_edit_files(self.get_selected_fsi_paths())
                 ),
-                ('pm_diff_selected_files', wsm_icons.STOCK_DIFF, _('_Diff'), None,
-                 _('Display the diff for selected files'),
+                ("pm_diff_selected_files", wsm_icons.STOCK_DIFF, _("_Diff"), None,
+                 _("Display the diff for selected files"),
                  lambda _action=None: pm_diff.TopPatchDiffPlusesDialog(file_paths=self.get_selected_fsi_paths()).show()
                 ),
-                ('pm_drop_selected_files', Gtk.STOCK_REMOVE, _('_Drop'), None,
-                 _('Drop/remove the selected files from the top patch'),
+                ("pm_drop_selected_files", Gtk.STOCK_REMOVE, _("_Drop"), None,
+                 _("Drop/remove the selected files from the top patch"),
                  lambda _action=None: self.pm_do_drop_files(self.get_selected_fsi_paths())
                 ),
-                ('pm_delete_selected_files', Gtk.STOCK_DELETE, _('_Delete'), None,
-                 _('Delete the selected files'),
+                ("pm_delete_selected_files", Gtk.STOCK_DELETE, _("_Delete"), None,
+                 _("Delete the selected files"),
                  lambda _action=None: self.pm_do_delete_files(self.get_selected_fsi_paths())
                 ),
             ])
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_UNIQUE].add_actions(
             [
-                ('pm_reconcile_selected_file', wsm_icons.STOCK_MERGE, _('_Reconcile'), None,
-                 _('Launch reconciliation tool for the selected file'),
+                ("pm_reconcile_selected_file", wsm_icons.STOCK_MERGE, _("_Reconcile"), None,
+                 _("Launch reconciliation tool for the selected file"),
                  lambda _action=None: self.pm_do_reconcile_file(self.get_selected_fsi_path())
                 ),
-                ('pm_copy_file', Gtk.STOCK_COPY, _('_Copy'), None,
-                 _('Add a copy of the selected file to the top patch'),
+                ("pm_copy_file", Gtk.STOCK_COPY, _("_Copy"), None,
+                 _("Add a copy of the selected file to the top patch"),
                  lambda _action=None: self.pm_do_copy_file(self.get_selected_fsi_path())
                 ),
-                ('pm_rename_file', wsm_icons.STOCK_RENAME, _('_Rename'), None,
-                 _('Rename the selected file within the top patch'),
+                ("pm_rename_file", wsm_icons.STOCK_RENAME, _("_Rename"), None,
+                 _("Rename the selected file within the top patch"),
                  lambda _action=None: self.pm_do_rename_file(self.get_selected_fsi_path())
                 ),
-                ('pm_extdiff_selected_file', wsm_icons.STOCK_DIFF, _('E_xtDiff'), None,
-                 _('Launch external diff viewer for selected file'),
+                ("pm_extdiff_selected_file", wsm_icons.STOCK_DIFF, _("E_xtDiff"), None,
+                 _("Launch external diff viewer for selected file"),
                  lambda _action=None: self.pm_do_extdiff_for_file(self.get_selected_fsi_path(), patch_name=None)
                 ),
             ])
@@ -235,23 +235,23 @@ class CombinedPatchFileTreeModel(TopPatchFileTreeModel):
 class CombinedPatchFileTreeView(TopPatchFileTreeView):
     MODEL = CombinedPatchFileTreeModel
     UI_DESCR = \
-    '''
+    """
     <ui>
       <popup name="files_popup">
         <separator/>
-          <menuitem action='pm_edit_files'/>
+          <menuitem action="pm_edit_files"/>
         <separator/>
-          <menuitem action='combined_patch_diff_selected_files'/>
+          <menuitem action="combined_patch_diff_selected_files"/>
         <separator/>
       </popup>
     </ui>
-    '''
+    """
     DIRS_SELECTABLE = False
     def populate_action_groups(self):
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_MADE].add_actions(
             [
-                ('combined_patch_diff_selected_files', wsm_icons.STOCK_DIFF, _('_Diff'), None,
-                 _('Display the combined diff for selected file'),
+                ("combined_patch_diff_selected_files", wsm_icons.STOCK_DIFF, _("_Diff"), None,
+                 _("Display the combined diff for selected file"),
                  lambda _action=None: pm_diff.CombinedPatchDiffPlusesDialog(file_paths=self.get_selected_fsi_paths()).show()
                 ),
             ])

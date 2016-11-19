@@ -27,7 +27,7 @@ import time
 from ..bab import options
 
 def patch_timestamp_tz_str(tz_seconds=None):
-    '''Return the timezone as a string suitable for use in patch header'''
+    """Return the timezone as a string suitable for use in patch header"""
     if tz_seconds is None:
         tz_seconds = -time.timezone
     if tz_seconds > 0:
@@ -35,12 +35,12 @@ def patch_timestamp_tz_str(tz_seconds=None):
     else:
         hrs = -(-tz_seconds / 3600)
     mins = (abs(tz_seconds) % 3600) / 60
-    return '{0:0=+3}{1:02}'.format(hrs, mins)
+    return "{0:0=+3}{1:02}".format(hrs, mins)
 
-_PTS_TEMPL = '%Y-%m-%d %H:%M:%S.{0:09} ' + patch_timestamp_tz_str()
+_PTS_TEMPL = "%Y-%m-%d %H:%M:%S.{0:09} " + patch_timestamp_tz_str()
 
 def patch_timestamp_str(secs=None):
-    '''Return the "in patch" timestamp string for "secs" seconds'''
+    """Return the "in patch" timestamp string for "secs" seconds"""
     ts_str = time.strftime(_PTS_TEMPL, time.localtime(secs))
     return ts_str.format(int((secs % 1) * 1000000000))
 

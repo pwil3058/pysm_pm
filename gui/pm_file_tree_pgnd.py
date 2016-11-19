@@ -40,9 +40,9 @@ from ...scm.gui import scm_actions
 
 from ... import wsm_icons
 
-#          <menuitem action='peruse_files'/>
-#          <menuitem action='pm_copy_files_to_top_patch'/>
-#          <menuitem action='pm_move_files_in_top_patch'/>
+#          <menuitem action="peruse_files"/>
+#          <menuitem action="pm_copy_files_to_top_patch"/>
+#          <menuitem action="pm_move_files_in_top_patch"/>
 
 class WSTreeModel(file_tree.FileTreeModel):
     UPDATE_EVENTS = os_utils.E_FILE_CHANGES|scm.E_NEW_SCM|scm.E_FILE_CHANGES|pm.E_FILE_CHANGES|pm.E_PATCH_STACK_CHANGES|pm.E_PATCH_REFRESH|pm.E_POP|pm.E_PUSH|scm.E_WD_CHANGES
@@ -56,7 +56,7 @@ class WSTreeView(file_tree.FileTreeView, enotify.Listener,
                  doop.DoOperationMixin, pm_do_opn_files.PMDoOpnFilesMixin):
     MODEL = WSTreeModel
     UI_DESCR = \
-    '''
+    """
     <ui>
       <menubar name="scm_files_menubar">
         <menu name="scm_files_menu" action="scm_files_menu_files">
@@ -75,21 +75,21 @@ class WSTreeView(file_tree.FileTreeView, enotify.Listener,
       <popup name="scmic_files_popup"/>
       <popup name="pmic_files_popup">
         <separator/>
-          <menuitem action='pm_edit_files_in_top_patch'/>
+          <menuitem action="pm_edit_files_in_top_patch"/>
         <separator/>
-          <menuitem action='pm_add_files_to_top_patch'/>
-          <menuitem action='pm_move_files_in_top_patch'/>
-          <menuitem action='pm_delete_files_in_top_patch'/>
+          <menuitem action="pm_add_files_to_top_patch"/>
+          <menuitem action="pm_move_files_in_top_patch"/>
+          <menuitem action="pm_delete_files_in_top_patch"/>
         <separator/>
         <separator/>
-          <menuitem action='pm_copy_file_to_top_patch'/>
-          <menuitem action='pm_rename_file_in_top_patch'/>
+          <menuitem action="pm_copy_file_to_top_patch"/>
+          <menuitem action="pm_rename_file_in_top_patch"/>
         <separator/>
-          <menuitem action='pm_select_unsettled'/>
+          <menuitem action="pm_select_unsettled"/>
         <separator/>
       </popup>
     </ui>
-    '''
+    """
     DIRS_SELECTABLE = False
     def __init__(self, show_hidden=False, hide_clean=False):
         file_tree.FileTreeView.__init__(self, show_hidden=show_hidden, hide_clean=hide_clean)
@@ -112,31 +112,31 @@ class WSTreeView(file_tree.FileTreeView, enotify.Listener,
             ])
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_MADE].add_actions(
             [
-                ('pm_add_files_to_top_patch', Gtk.STOCK_ADD, _('_Add'), None,
-                 _('Add the selected files to the top patch'),
+                ("pm_add_files_to_top_patch", Gtk.STOCK_ADD, _("_Add"), None,
+                 _("Add the selected files to the top patch"),
                  lambda _action=None: self.pm_do_add_files(self.get_selected_fsi_paths())
                 ),
-                ('pm_move_files_in_top_patch', wsm_icons.STOCK_RENAME, _('_Move'), None,
-                 _('Move the selected files within the top patch'),
+                ("pm_move_files_in_top_patch", wsm_icons.STOCK_RENAME, _("_Move"), None,
+                 _("Move the selected files within the top patch"),
                  lambda _action=None: self.pm_do_move_files(self.get_selected_fsi_paths())
                 ),
-                ('pm_edit_files_in_top_patch', Gtk.STOCK_EDIT, _('_Edit'), None,
-                 _('Open the selected files for editing after adding them to the top patch'),
+                ("pm_edit_files_in_top_patch", Gtk.STOCK_EDIT, _("_Edit"), None,
+                 _("Open the selected files for editing after adding them to the top patch"),
                  lambda _action=None: self.pm_do_edit_files(self.get_selected_fsi_paths())
                 ),
-                ('pm_delete_files_in_top_patch', Gtk.STOCK_DELETE, _('_Delete'), None,
-                 _('Add the selected files to the top patch and then delete them'),
+                ("pm_delete_files_in_top_patch", Gtk.STOCK_DELETE, _("_Delete"), None,
+                 _("Add the selected files to the top patch and then delete them"),
                  lambda _action=None: self.pm_do_delete_files(self.get_selected_fsi_paths())
                 ),
             ])
         self.action_groups[pm_actions.AC_IN_PM_PGND + pm_actions.AC_PMIC + actions.AC_SELN_UNIQUE].add_actions(
             [
-                ('pm_copy_file_to_top_patch', Gtk.STOCK_COPY, _('_Copy'), None,
-                 _('Add a copy of the selected file to the top patch'),
+                ("pm_copy_file_to_top_patch", Gtk.STOCK_COPY, _("_Copy"), None,
+                 _("Add a copy of the selected file to the top patch"),
                  lambda _action=None: self.pm_do_copy_file(self.get_selected_fsi_path())
                 ),
-                ('pm_rename_file_in_top_patch', wsm_icons.STOCK_RENAME, _('_Rename'), None,
-                 _('Rename the selected file within the top patch'),
+                ("pm_rename_file_in_top_patch", wsm_icons.STOCK_RENAME, _("_Rename"), None,
+                 _("Rename the selected file within the top patch"),
                  lambda _action=None: self.pm_do_rename_file(self.get_selected_fsi_path())
                 ),
             ])
@@ -146,8 +146,8 @@ class WSTreeView(file_tree.FileTreeView, enotify.Listener,
                  _("Add a new file to the top applied patch"),
                  lambda _action=None: self.pm_do_add_new_file()
                 ),
-                ('pm_select_unsettled', None, _('Select _Unsettled'), None,
-                 _('Select files that are unrefreshed in patches below top or have uncommitted SCM changes not covered by an applied patch'),
+                ("pm_select_unsettled", None, _("Select _Unsettled"), None,
+                 _("Select files that are unrefreshed in patches below top or have uncommitted SCM changes not covered by an applied patch"),
                  lambda _action=None: self.pm_select_unsettled()
                 ),
             ])
