@@ -188,7 +188,7 @@ class ListView(table.MapManagedTableView, pm_actions.WDListenerMixin,
             [
                 ("pm_edit_patch_descr", Gtk.STOCK_EDIT, _("Description"), None,
                  _("Edit the selected patch's description"),
-                 lambda _action=None: dooph_pm.PatchDescrEditDialog(self.get_selected_patch(), parent=None).show()
+                 lambda _action=None: pm_do_opn_patches.PatchDescrEditDialog(self.get_selected_patch(), parent=None).show()
                 ),
                 ("patch_list_patch_view", wsm_icons.STOCK_DIFF, _("Details"), None,
                  _("View the selected patch's details"),

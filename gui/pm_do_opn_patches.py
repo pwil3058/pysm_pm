@@ -29,10 +29,12 @@ from ...bab import utils
 
 from ...gtx import actions
 from ...gtx import dialogue
+from ...gtx import gutils
 from ...gtx import icons
 from ...gtx import recollect
 from ...gtx import table
 from ...gtx import text_edit
+from ...gtx import textview
 from ...gtx import tlview
 
 from ... import pm
