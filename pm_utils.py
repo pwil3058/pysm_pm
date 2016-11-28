@@ -51,29 +51,29 @@ def generic_delete_files(file_paths):
     return os_utils.os_delete_files(file_paths, events=pm.EFILE_DELETED)
 
 def set_patch_file_description(patch_file_path, description, overwrite=False):
-    from ..patch_diff import patchlib
+    from ..patch_diff import patches
     from ..bab import utils
     if os.path.isfile(patch_file_path):
         try:
-            patch_obj = patchlib.Patch.parse_text(utils.get_file_contents(patch_file_path))
+            patch_obj = patches.Patch.parse_text(utils.get_file_contents(patch_file_path))
         except IOError as edata:
             return CmdResult.error(stderr=str(edata))
-        except patchlib.ParseError:
+        except patches.ParseError:
             if overwrite:
-                patch_obj = patchlib.Patch()
+                patch_obj = patches.Patch()
             else:
                 return CmdResult.error(stderr=_("{0}: exists but is not a valid patch file".format(patch_file_path))) | CmdResult.Suggest.OVERWRITE
     else:
-        patch_obj = patchlib.Patch()
+        patch_obj = patches.Patch()
     patch_obj.set_description(description)
     result = utils.set_file_contents(patch_file_path, str(patch_obj), compress=True)
     return result
 
 def get_patch_file_description(patch_file_path):
     assert os.path.isfile(patch_file_path), _("Patch file \"{0}\" does not exist\n").format(patch_file_path)
-    from ..patch_diff import patchlib
+    from ..patch_diff import patches
     from ..bab import utils
-    pobj = patchlib.Patch.parse_text(utils.get_file_contents(patch_file_path))
+    pobj = patches.Patch.parse_text(utils.get_file_contents(patch_file_path))
     return pobj.get_description()
 
 options.define("export", "replace_spc_in_name_with", options.Defn(str, None, _("Character to replace spaces in patch names with during export")))

@@ -30,10 +30,10 @@ class PatchState:
     APPLIED_UNREFRESHABLE = "!"
 
 class Presence(object):
-    from ..patch_diff import patchlib
-    ADDED = patchlib.FilePathPlus.ADDED
-    REMOVED = patchlib.FilePathPlus.DELETED
-    EXTANT = patchlib.FilePathPlus.EXTANT
+    from ..patch_diff import patches
+    ADDED = patches.FilePathPlus.ADDED
+    REMOVED = patches.FilePathPlus.DELETED
+    EXTANT = patches.FilePathPlus.EXTANT
 
 class Validity(object):
     REFRESHED, NEEDS_REFRESH, UNREFRESHABLE = range(3)

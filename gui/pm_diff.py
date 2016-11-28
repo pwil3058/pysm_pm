@@ -28,7 +28,7 @@ from ...bab import options
 from ...bab import utils
 
 
-from ...patch_diff import patchlib
+from ...patch_diff import patches
 
 from ...patch_diff.gui import diff
 

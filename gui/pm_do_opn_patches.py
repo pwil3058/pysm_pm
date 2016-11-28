@@ -297,13 +297,13 @@ def pm_do_scm_absorb_applied_patches(helper):
     return result.is_ok
 
 def pm_do_fold_external_patch(helper):
-    from ...patch_diff import patchlib
+    from ...patch_diff import patches
     patch_file_path = helper.ask_file_path(_("Select patch file to be folded"))
     if patch_file_path is None:
         return
     try:
-        epatch = patchlib.Patch.parse_text_file(patch_file_path)
-    except patchlib.ParseError as edata:
+        epatch = patches.Patch.parse_text_file(patch_file_path)
+    except patches.ParseError as edata:
         result = CmdResult.error(stderr="{0}: {1}: {2}\n".format(patch_file_path, edata.lineno, edata.message))
         helper.report_any_problems(result)
         return
@@ -340,13 +340,13 @@ def pm_do_fold_external_patch(helper):
 
 def pm_do_import_external_patch(helper):
     suggestion = recollect.get("import", "last_directory")
-    from ...patch_diff import patchlib
+    from ...patch_diff import patches
     patch_file_path = helper.ask_file_path(_("Select patch file to be imported"), suggestion=suggestion)
     if patch_file_path is None:
         return
     try:
-        epatch = patchlib.Patch.parse_text_file(patch_file_path)
-    except patchlib.ParseError as edata:
+        epatch = patches.Patch.parse_text_file(patch_file_path)
+    except patches.ParseError as edata:
         result = CmdResult.error(stderr="{0}: {1}: {2}\n".format(patch_file_path, edata.lineno, edata.message))
         helper.report_any_problems(result)
         return
@@ -772,7 +772,7 @@ class ImportPatchDialog(dialogue.Dialog):
     def get_as_name(self):
         return self.as_name.get_text()
     def update_file_list(self):
-        from ...patch_diff.patchlib import TooMayStripLevels
+        from ...patch_diff.patches import TooMayStripLevels
         strip_level = self.get_strip_level()
         try:
             filepaths = self.epatch.get_file_paths(strip_level)
