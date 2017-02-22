@@ -31,9 +31,9 @@ def add_backend(newifce):
         _MISSING_BACKEND[newifce.name] = newifce
 
 def backend_requirements():
-    msg = _("No back ends are available. At least one of:") + os.linesep
+    msg = _("No back ends are available. At least one of:\n")
     for key in list(_MISSING_BACKEND.keys()):
-        msg += "\t" + _MISSING_BACKEND[key].requires() + os.linesep
+        msg += "\t" + _MISSING_BACKEND[key].requires() + "\n"
     msg += _("must be installed/available for \"gquilt\" to do.anything useful.")
     return msg
 

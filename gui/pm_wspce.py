@@ -46,7 +46,7 @@ class PgndPathDialog(apath.PathSelectDialog):
 class AskInitPgndDialog(dialogue.QuestionDialog, dialogue.ClientMixin):
     def __init__(self):
         buttons = (Gtk.STOCK_NO, Gtk.ResponseType.NO, Gtk.STOCK_YES, Gtk.ResponseType.YES)
-        qtn =os.linesep.join([_("Directory {} has not been initialised.").format(os.getcwd()),
+        qtn ="\n".join([_("Directory {} has not been initialised.").format(os.getcwd()),
                                _("Do you wish to initialise it?")])
         dialogue.QuestionDialog.__init__(self, qtn=qtn, buttons=buttons)
         self.connect("response", self._response_cb)
